@@ -20,6 +20,19 @@ void draw(const char status[], const int &lifes, const int &word_size) {
     cout << endl;
 }
 
+int SearchChar(const char& c, const char word[], const int &word_size) {
+    for (int i=0; i < word_size; i++) {
+        for (int j=0; j < word_size; j++) {
+            
+        }
+    }
+}
+
+bool validateGuess(const char &letter){
+    if()
+
+}
+
 
 int main(int argc, char* argv[]) {
 
@@ -138,6 +151,10 @@ int main(int argc, char* argv[]) {
     cout << "PALAVRA: " << palavras[word_index] << endl;
 
     draw(status, lifes, word_size);
+
+    cout << "Digite uma letra:" << endl;
+
+
 
     
 
