@@ -1,20 +1,14 @@
 #include <iostream>
-#include <random>
+
 
 using namespace std;
 
 
-int sortIndex(int WORD_TABLE_SIZE) {
 
-    random_device rd; //  gera uma semente verdadeiramente aleatória
-    mt19937 gen(rd()); //  é um gerador de alta qualidade (Mersenne Twister)
-    uniform_int_distribution<> dist(0, WORD_TABLE_SIZE-1); // garante distribuição uniforme no intervalo
-    return dist(gen);
-}
 
 
 void draw(const char status[], const int &lifes, const int &word_size) {
-    system("clear");
+    system("cls");
     cout << "Lifes: " << lifes << endl;
     cout << "--> ";
     for (int i=0; i<word_size; i++) {
@@ -56,7 +50,7 @@ int main(int argc, char* argv[]) {
     int word_size = palavras[word_index].size();
 
     char word[word_index];
-    char status[word_index];
+    char status[word_size];
 
     for(int i=0; i<word_size; i++) {
         word[i] = palavras[word_index][i];
@@ -69,26 +63,29 @@ int main(int argc, char* argv[]) {
     draw(status, lifes, word_size);
 
     while (true) {
-        cout << "Digite uma letra:" << endl;
+        if(lifes > 0) {
+            cout << "Digite uma letra:" << endl;
 
-        char input;
-        input = getchar();
-        getchar();
+            char input;
+            input = getchar();
+            getchar();
 
-        if (!HaveChar(input, word, status, word_size)) {
-            lifes--;
-            cout << "Letra errada!" << endl;
+            if (!HaveChar(input, word, status, word_size)) {
+                lifes--;
+                cout << "Letra errada!" << endl;
+            } else {
+                cout << "Acertou a letra!" << endl;
+            }
+
+            draw(status, lifes, word_size);
+            
         } else {
-            cout << "Acertou a letra!" << endl;
+            cout << "Voce Perdeu!" << endl;
+            cout << "A PALAVRA ERA: " << palavras[word_index] << endl;
+            break;
         }
-
-        draw(status, lifes, word_size);
-        cout << "PALAVRA: " << palavras[word_index] << endl;
     }
 
-
-
-    
 
     return 0;
 }
